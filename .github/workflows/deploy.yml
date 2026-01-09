@@ -37,7 +37,26 @@ jobs:
           ls -la
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "Checking for lock files..."
+          ls -la package*.json *lock* 2>/dev/null || echo "No lock files found"
+          
+          echo "Attempting npm ci (faster and more reliable)..."
+          if npm ci --legacy-peer-deps 2>&1; then
+            echo "✓ Dependencies installed successfully with npm ci"
+          else
+            echo "npm ci failed, falling back to npm install..."
+            echo "Clearing npm cache..."
+            npm cache clean --force || true
+            echo "Installing with npm install..."
+            npm install --legacy-peer-deps --no-audit
+            echo "✓ Dependencies installed with npm install"
+          fi
+          
+          echo "Verifying critical packages..."
+          npm list react react-dom vite 2>/dev/null || echo "Warning: Some packages may not be installed correctly"
         continue-on-error: false
 
       - name: Check TypeScript
