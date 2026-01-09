@@ -62,12 +62,45 @@ This project is built with:
 
 ## How can I deploy this project?
 
+### Deploy to GitHub Pages with Custom Domain
+
+This project is configured to deploy automatically to GitHub Pages with the custom domain `anandmuley.in`.
+
+**Setup Instructions:**
+
+1. **Enable GitHub Pages:**
+   - Go to your repository on GitHub
+   - Navigate to Settings → Pages
+   - Under "Source", select "GitHub Actions" (not "Deploy from a branch")
+   - The workflow will automatically deploy when you push to the `main` branch
+
+2. **Configure Custom Domain:**
+   - The `CNAME` file is already created in the `public` folder with `anandmuley.in`
+   - In your repository Settings → Pages, under "Custom domain", enter `anandmuley.in`
+   - GitHub will automatically create a DNS check file
+
+3. **Configure DNS:**
+   - Go to your domain registrar (where you purchased `anandmuley.in`)
+   - Add the following DNS records:
+     - **Type A records** pointing to GitHub Pages IPs:
+       - `185.199.108.153`
+       - `185.199.109.153`
+       - `185.199.110.153`
+       - `185.199.111.153`
+     - OR use a **CNAME record** pointing to: `your-username.github.io` (if using a user/organization page)
+   - Wait for DNS propagation (can take up to 48 hours, usually much faster)
+
+4. **Deploy:**
+   - Push your code to the `main` branch
+   - The GitHub Actions workflow will automatically build and deploy your site
+   - Your site will be available at `https://anandmuley.in` once DNS is configured
+
+**Manual Deployment:**
+```sh
+npm run build
+# Then push the dist folder to the gh-pages branch (handled automatically by GitHub Actions)
+```
+
+### Alternative: Deploy via Lovable
+
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
