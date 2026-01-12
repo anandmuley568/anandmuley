@@ -49,7 +49,7 @@ const HeroSection = () => {
           {/* Name with magnetic effect */}
           <div className="mb-6">
             <MagneticText className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-              Your Name
+              Anand Muley
             </MagneticText>
           </div>
 
