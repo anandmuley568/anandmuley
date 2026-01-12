@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const projects = [
   {
@@ -6,22 +7,34 @@ const projects = [
     description: 'Full-stack e-commerce solution with payment integration',
     tags: ['React', 'Node.js', 'MongoDB'],
     color: 'hsl(185, 100%, 50%)',
+    route: '/projects/ecommerce',
   },
   {
     title: 'AI Dashboard',
     description: 'Real-time analytics dashboard with machine learning insights',
     tags: ['Python', 'TensorFlow', 'React'],
     color: 'hsl(280, 100%, 65%)',
+    route: '/projects/ai-dashboard',
   },
   {
     title: 'Social Media App',
     description: 'Mobile-first social platform with real-time messaging',
     tags: ['React Native', 'Firebase', 'Redux'],
     color: 'hsl(45, 100%, 50%)',
+    route: '/projects/social-media',
+  },
+  {
+    title: 'Insta Reel Platform',
+    description: 'Short-form video platform with AR filters and viral discovery',
+    tags: ['React Native', 'FFmpeg', 'WebRTC'],
+    color: 'hsl(330, 100%, 60%)',
+    route: '/projects/insta-reel',
   },
 ];
 
 const ProjectsSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="projects" className="py-24 relative">
       <div className="container mx-auto px-6">
@@ -83,13 +96,14 @@ const ProjectsSection = () => {
                     className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{ backgroundColor: `${project.color}90` }}
                   >
-                    <motion.button
-                      className="px-6 py-2 rounded-full bg-background text-foreground font-semibold"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      View Project
-                    </motion.button>
+                      <motion.button
+                        className="px-6 py-2 rounded-full bg-background text-foreground font-semibold"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => navigate(project.route)}
+                      >
+                        View Project
+                      </motion.button>
                   </motion.div>
                 </div>
 
