@@ -103,7 +103,7 @@ const AboutSection = () => {
               viewport={{ once: true }}
             >
               {[
-                { number: '3+', label: 'Years Exp.' },
+                { number: '5+', label: 'Years Exp.' },
                 { number: '50+', label: 'Projects' },
                 { number: '100%', label: 'Passion' },
               ].map((stat, index) => (
