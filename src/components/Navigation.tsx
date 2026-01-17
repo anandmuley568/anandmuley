@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 const Navigation = () => {
-  const navItems = ['About', 'Skills', 'Projects', 'Contact'];
+  const navItems = ['About', 'Skills', 'Projects', 'Contact', 'Study'];
 
   return (
     <motion.nav
